@@ -4,7 +4,7 @@ DefaultDependencies=no
 After=local-fs.target
 
 [Service]
-ExecStart=/usr/bin/pngview /opt/splash.png
+ExecStart=/usr/bin/pngview /opt/splash.png -b 0x346f
 StandardInput=tty
 StandardOutput=tty
 
