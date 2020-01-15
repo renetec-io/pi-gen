@@ -28,3 +28,5 @@ vl805fw
 ntfs-3g
 pciutils
 rpi-eeprom
+x11-xserver-utils
+libpng12-0
