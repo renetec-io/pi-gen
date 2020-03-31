@@ -1,1 +1,2 @@
-deb http://pyxis-repo.s3.eu-north-1.amazonaws.com/pyxis-0.1/ pyxian main
+deb http://packages.renetec.io/pyxian/ buster main
+deb http://uncached.renetec.io/pyxian-staging/ buster main
