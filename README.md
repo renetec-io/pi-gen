@@ -67,7 +67,7 @@ The following environment variables are supported:
 
  * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
 
-   Output directory for target system images and NOOBS bundles.
+   Output directory for target system images.
 
  * `DEPLOY_ZIP` (Default: `1`)
 
@@ -276,14 +276,6 @@ maintenance and allows for more easy customization.
    with X11 and LXDE, web browsers, git for development, Raspbian custom UI
    enhancements, etc.  This is a base desktop system, with some development
    tools installed.
-
- - **Stage 4** - Normal Raspbian image. System meant to fit on a 4GB card. This is the
-   stage that installs most things that make Raspbian friendly to new
-   users like system documentation.
-
- - **Stage 5** - The Raspbian Full image. More development
-   tools, an email client, learning tools like Scratch, specialized packages
-   like sonic-pi, office productivity, etc.  
 
 ### Stage specification
 
