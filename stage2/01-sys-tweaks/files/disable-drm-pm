@@ -1,0 +1,5 @@
+#!/bin/bash
+
+[ -n "$1" ] || exit 1
+
+echo "on" > "/sys/$1/power/control"
