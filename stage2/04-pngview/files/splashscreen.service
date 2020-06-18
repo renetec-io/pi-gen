@@ -1,6 +1,7 @@
 [Unit]
 Description=Splash screen
 DefaultDependencies=no
+After=local-fs.target
 
 [Service]
 ExecStart=/bin/bash -c "/usr/bin/pngview /opt/splash.png -b $(if [ $(cat /proc/device-tree/model | awk '{print $3}') == "4" ]; then echo 0x643f; else echo 0x346f; fi)"
@@ -8,5 +9,5 @@ StandardInput=tty
 StandardOutput=tty
 
 [Install]
-WantedBy=basic.target
+WantedBy=sysinit.target
 
