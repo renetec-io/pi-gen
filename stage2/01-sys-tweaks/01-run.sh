@@ -54,3 +54,9 @@ usermod --pass='*' root
 EOF
 
 rm -f "${ROOTFS_DIR}/etc/ssh/"ssh_host_*_key*
+
+install -d                                         "${ROOTFS_DIR}/etc/udev/rules.d/"
+install -d                                         "${ROOTFS_DIR}/usr/local/sbin/"
+
+install -v -m 644 files/70-persistent-drm.rules    "${ROOTFS_DIR}/etc/udev/rules.d/"
+install -v -m 744 files/disable-drm-pm             "${ROOTFS_DIR}/usr/local/sbin/"

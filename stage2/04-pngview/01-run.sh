@@ -8,5 +8,5 @@ install -v -m 644 files/splash_images/*          "${ROOTFS_DIR}/usr/share/splash
 
 on_chroot << EOF
 systemctl enable splashscreen.service
-ln -s /usr/share/splash_images/splash_normal_420.png /opt/splash.png
+ln -sfn /usr/share/splash_images/splash_normal_420.png /opt/splash.png
 EOF
