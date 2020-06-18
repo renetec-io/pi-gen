@@ -1,0 +1,1 @@
+SUBSYSTEM=="platform", KERNEL=="*.v3d", ACTION=="add", RUN+="/usr/local/sbin/disable-drm-pm '%p'"
