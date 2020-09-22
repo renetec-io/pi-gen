@@ -2,7 +2,7 @@
 
 CONFIG=${ROOTFS_DIR}/boot/config.txt
 
-echo "# Set Pyxis HDMI parameters" | tee -a $CONFIG
+printf "\n# Set Pyxis HDMI parameters" | tee -a $CONFIG
 echo "hdmi_force_hotplug=1" | tee -a $CONFIG
 echo "hdmi_group=2" | tee -a $CONFIG
 echo "hdmi_mode=87" | tee -a $CONFIG
