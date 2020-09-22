@@ -1,0 +1,47 @@
+// Device tree overlay for I2C0 connected Goodix gt911 multiple touch controller
+// for Pyxis
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2708";
+
+	fragment@0 {
+		target = <&gpio>;
+		__overlay__ {
+			goodix_pins: goodix_pins {
+				brcm,pins = <36 37>; // interrupt and reset
+				brcm,function = <0 0>; // in
+				brcm,pull = <2 2>; // pull-up
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			gt911: gt911@14 {
+				compatible = "goodix,gt911";
+				reg = <0x14>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&goodix_pins>;
+				interrupt-parent = <&gpio>;
+				interrupts = <36 2>; // high-to-low edge triggered
+				irq-gpios = <&gpio 36 0>;
+				reset-gpios = <&gpio 37 0>;
+			};
+		};
+	};
+
+	__overrides__ {
+		interrupt = <&goodix_pins>,"brcm,pins:0",
+			<&gt911>,"interrupts:0",
+			<&gt911>,"irq-gpios:36";
+		reset = <&goodix_pins>,"brcm,pins:4",
+			<&gt911>,"reset-gpios:37";
+	};
+};
