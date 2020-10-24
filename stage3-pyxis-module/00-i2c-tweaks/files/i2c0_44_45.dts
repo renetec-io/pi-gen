@@ -1,0 +1,7 @@
+/dts-v1/;
+/plugin/;
+
+/* i2c0 mux is set to gpio 44,45 */
+&i2c0mux {
+	pinctrl-0 = <&i2c0_gpio44>;
+};
