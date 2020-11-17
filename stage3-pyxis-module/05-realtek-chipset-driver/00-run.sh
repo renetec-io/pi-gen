@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+install -m 755 files/install_rtl8812au "${ROOTFS_DIR}/etc/init.d/"
+
 git clone --depth 1  https://github.com/aircrack-ng/rtl8812au.git -b v5.3.4
 cd rtl8812au
 
@@ -17,8 +19,12 @@ DRV_VERSION=5.3.4
 install -d "${ROOTFS_DIR}/usr/src/${DRV_NAME}-${DRV_VERSION}"
 find . -type f -exec install -Dm 644 "{}" "${ROOTFS_DIR}/usr/src/${DRV_NAME}-${DRV_VERSION}/{}" \;
 
+#on_chroot << EOF
+#dkms add -m ${DRV_NAME} -v ${DRV_VERSION}
+#ARCH=arm KVER="5.4.72-v7+" dkms build -m ${DRV_NAME} -v ${DRV_VERSION}
+#dkms install -m ${DRV_NAME} -v ${DRV_VERSION}
+#EOF
+
 on_chroot << EOF
-dkms add -m ${DRV_NAME} -v ${DRV_VERSION}
-ARCH=arm KVER="5.4.72-v7+" dkms build -m ${DRV_NAME} -v ${DRV_VERSION}
-dkms install -m ${DRV_NAME} -v ${DRV_VERSION}
+systemctl enable install_rtl8812au
 EOF
