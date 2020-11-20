@@ -19,16 +19,21 @@ DRV_VERSION=5.3.4
 install -d "${ROOTFS_DIR}/usr/src/${DRV_NAME}-${DRV_VERSION}"
 find . -type f -exec install -Dm 644 "{}" "${ROOTFS_DIR}/usr/src/${DRV_NAME}-${DRV_VERSION}/{}" \;
 
+echo $( find ${ROOTFS_DIR}/usr/src -name "linux-headers*" )
+
 on_chroot << EOF
+echo $(find ${ROOTFS_DIR}/usr/src -name "linux-headers*")
+echo 0
+FILE1=$(find ${ROOTFS_DIR}/usr/src -name "linux-headers*")
 dkms add -m ${DRV_NAME} -v ${DRV_VERSION}
 echo 1
-for FILE1 in $( find ${ROOTFS_DIR}/usr/src -name "linux-headers*" )
-do
+#for FILE1 in $( find ${ROOTFS_DIR}/usr/src -name "linux-headers*" )
+#do
 echo 2
 KERNAL_VERSION=$( echo $( basename "$FILE1" ) | cut -d- -f3- )
 dkms build -m ${DRV_NAME} -v ${DRV_VERSION} -k ${KERNAL_VERSION}
 dkms install -m ${DRV_NAME} -v ${DRV_VERSION} -k ${KERNAL_VERSION}
-done
+#done
 EOF
 
 #on_chroot << EOF

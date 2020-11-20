@@ -1,0 +1,27 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          install_rtl8812au
+# Required-Start:
+# Required-Stop:
+# Default-Start: 3
+# Default-Stop:
+# Short-Description:
+# Description:
+### END INIT INFO
+. /lib/lsb/init-functions
+case "$1" in
+  start)
+    log_daemon_msg "Installing rtl8812au driver"
+    DRV_NAME=rtl8812au
+    DRV_VERSION=5.3.4
+    dkms add -m ${DRV_NAME} -v ${DRV_VERSION}
+    ARCH=arm dkms build -m ${DRV_NAME} -v ${DRV_VERSION} &&
+    dkms install -m ${DRV_NAME} -v ${DRV_VERSION} &&
+    update-rc.d install_rtl8812au remove &&
+    rm /etc/init.d/install_rtl8812au
+    ;;
+  *)
+    echo "Usage: $0 start" >&2
+    exit 3
+    ;;
+esac
