@@ -1,3 +1,4 @@
 #!/bin/bash -e
 
-patch /boot/config.txt files/config.patch
+patch -f -s ${ROOTFS_DIR}/boot/config.txt files/config.patch
+
