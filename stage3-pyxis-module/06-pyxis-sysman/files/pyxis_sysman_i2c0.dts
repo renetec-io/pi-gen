@@ -1,0 +1,22 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2708";
+
+    fragment@0 {
+            target = <&i2c0>;
+
+            __overlay__ {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+                    status = "okay";
+
+                    pyxis_sysman@2a {
+                            compatible = "pyxis-sysman";
+                            reg = <0x2a>;
+                            status = "okay";
+                    };
+            };
+      };
+};

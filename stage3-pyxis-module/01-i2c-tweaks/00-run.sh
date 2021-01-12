@@ -9,4 +9,5 @@ install -v -m 644 i2c0_44_45.dtbo ${ROOTFS_DIR}/boot/overlays
 echo -e "
 # Enable I2C0 on pins 44, 45
 dtoverlay=i2c0_44_45
-dtparam=i2c_vc=on" | tee -a $CONFIG > /dev/null
+dtparam=i2c_vc=on
+dtparam=i2c_vc_baudrate=50000" | tee -a $CONFIG > /dev/null
