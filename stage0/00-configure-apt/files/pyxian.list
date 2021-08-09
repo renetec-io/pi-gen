@@ -1,2 +1,2 @@
-deb http://packages.renetec.io/pyxian/ buster main
-deb http://uncached.renetec.io/pyxian-staging/ buster main
+deb http://packages.pyxis.dev/pyxian/ buster main
+deb http://packages-pyxis-dev.s3.us-east-2.amazonaws.com/staging/pyxian/ buster main
